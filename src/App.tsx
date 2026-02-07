@@ -10,6 +10,12 @@ import { GenericProject } from './pages/GenericProject';
 import { AmbientChaos } from './pages/AmbientChaos';
 import { AsteroidLauncher } from './pages/AsteroidLauncher';
 import { AuctionGame } from './pages/AuctionGame';
+import { AmbientSounds } from './pages/AmbientSounds';
+import { BabyMap } from './pages/BabyMap';
+import { BidBattle } from './pages/BidBattle';
+import { BillionaireSim } from './pages/BillionaireSim';
+import { DarkPatterns } from './pages/DarkPatterns';
+import { DaysSinceIncident } from './pages/DaysSinceIncident';
 import './App.css';
 
 function App() {
@@ -26,6 +32,12 @@ function App() {
         <Route path="/ambient-chaos" element={<AmbientChaos />} />
         <Route path="/asteroid-launcher" element={<AsteroidLauncher />} />
         <Route path="/auction-game" element={<AuctionGame />} />
+        <Route path="/ambient-sounds" element={<AmbientSounds />} />
+        <Route path="/baby-map" element={<BabyMap />} />
+        <Route path="/bid-battle" element={<BidBattle />} />
+        <Route path="/billionaire-sim" element={<BillionaireSim />} />
+        <Route path="/dark-patterns" element={<DarkPatterns />} />
+        <Route path="/days-since-incident" element={<DaysSinceIncident />} />
         {/* Dynamic project routes (fallback for image-backed projects) */}
         <Route path="/:projectId" element={<GenericProject />} />
       </Routes>
