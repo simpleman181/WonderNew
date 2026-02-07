@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { CosmicScale } from './pages/CosmicScale';
 import { HumanCheck } from './pages/HumanCheck';
@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter basename="/WonderNew/">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cosmic-scale" element={<CosmicScale />} />
@@ -20,7 +20,7 @@ function App() {
         <Route path="/element-fusion" element={<ElementFusion />} />
         <Route path="/web-museum" element={<WebMuseum />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
