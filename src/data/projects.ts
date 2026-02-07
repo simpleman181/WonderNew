@@ -10,31 +10,31 @@ export const projects: Project[] = [
   {
     id: 'human-check',
     title: 'Human Verification',
-    url: '#',
+    url: '/human-check',
     image: '/images/human-check.jpg',
   },
   {
     id: 'digital-roadtrip',
     title: 'Digital Roadtrip',
-    url: '#',
+    url: '/digital-roadtrip',
     image: '/images/digital-roadtrip.jpg',
   },
   {
     id: 'dopamine-clicker',
     title: 'Dopamine Clicker',
-    url: '#',
+    url: '/dopamine-clicker',
     image: '/images/dopamine-clicker.jpg',
   },
   {
     id: 'element-fusion',
     title: 'Element Fusion',
-    url: '#',
+    url: '/element-fusion',
     image: '/images/element-fusion.jpg',
   },
   {
     id: 'web-museum',
     title: 'Web Museum',
-    url: '#',
+    url: '/web-museum',
     image: '/images/web-museum.jpg',
   },
 ];

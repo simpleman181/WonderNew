@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+// navigation handled via full page navigation for GitHub Pages compatibility
 import type { Project } from '@/types';
 
 interface ProjectCardProps {
@@ -8,21 +8,22 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const navigate = useNavigate();
+  
 
   // Vite provides the base URL via import.meta.env.BASE_URL
-  const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+  const baseRaw = import.meta.env.BASE_URL ?? '/';
+  const base = baseRaw.replace(/\/$/, '');
   const path = project.url.replace(/^\//, '');
-  const href = `${base}/${path}`;
-
+  // Build an absolute href so clicks/open-in-new-tab go straight to the deployed URL
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Use SPA navigation when possible
-    navigate(project.url.replace(/^\//, '/') );
+    const full = `${window.location.origin}${base}/${path}`;
+    // Navigate explicitly to the computed absolute URL.
+    window.location.assign(full);
   };
 
   return (
-    <a href={href} onClick={handleClick} className="block">
+    <button onClick={handleClick} className="block text-left w-full">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -46,6 +47,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </h3>
         </div>
       </motion.div>
-    </a>
+    </button>
   );
 }

@@ -19,25 +19,31 @@ try {
   await page.waitForLoadState('networkidle');
 
   for (const title of PROJECT_TITLES) {
-    const link = await page.$(`a:has-text("${title}")`);
-    if (!link) {
+    // Find any visible element with the project title and click it (covers buttons or anchors)
+    const el = await page.$(`text="${title}"`);
+    if (!el) {
       results.push({ title, ok: false, reason: 'Link not found on homepage' });
       continue;
     }
 
+    const href = await el.evaluate((n) => n.closest('a') ? n.closest('a').getAttribute('href') : null).catch(() => null);
+    const outer = await el.evaluate((n) => n.outerHTML).catch(() => null);
+
+    // Click the element and wait for navigation/network idle
     await Promise.all([
       page.waitForLoadState('networkidle').catch(() => {}),
-      link.click().catch(() => {}),
+      el.click().catch(() => {}),
     ]);
 
     await page.waitForTimeout(700);
 
     const url = page.url();
     const header = await page.$(`text=${title}`);
+
     if (header) {
-      results.push({ title, ok: true, url });
+      results.push({ title, ok: true, url, href, outer });
     } else {
-      results.push({ title, ok: false, url, reason: 'Project page did not render expected header' });
+      results.push({ title, ok: false, url, href, outer, reason: 'Project page did not render expected header' });
     }
 
     await page.goto(BASE + '/');
