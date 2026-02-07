@@ -1,14 +1,9 @@
 import { chromium } from 'playwright';
 
 const BASE = 'https://simpleman181.github.io/WonderNew';
-const PROJECT_TITLES = [
-  'Cosmic Scale',
-  'Human Verification',
-  'Digital Roadtrip',
-  'Dopamine Clicker',
-  'Element Fusion',
-  'Web Museum',
-];
+// We'll discover project titles dynamically from the homepage to cover
+// all projects listed in `src/data/projects.ts` (including newly added ones).
+let PROJECT_TITLES = null;
 
 const results = [];
 
@@ -17,6 +12,13 @@ const page = await browser.newPage();
 try {
   await page.goto(BASE + '/');
   await page.waitForLoadState('networkidle');
+
+  // Discover project titles from homepage
+  if (!PROJECT_TITLES) {
+    PROJECT_TITLES = await page.$$eval('main h3', (nodes) =>
+      nodes.map((n) => (n.textContent || '').trim()).filter(Boolean)
+    );
+  }
 
   for (const title of PROJECT_TITLES) {
     // Find any visible element with the project title and click it (covers buttons or anchors)
