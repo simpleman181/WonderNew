@@ -1,19 +1,16 @@
-import { Header } from '@/components/Header';
-import { NewsletterButton } from '@/components/NewsletterButton';
-import { ProjectGrid } from '@/components/ProjectGrid';
-import { Footer } from '@/components/Footer';
-import { projects } from '@/data/projects';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { CosmicScale } from './pages/CosmicScale';
+import './App.css';
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <NewsletterButton />
-      <Header />
-      <main>
-        <ProjectGrid projects={projects} />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter basename="/WonderNew">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cosmic-scale" element={<CosmicScale />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
