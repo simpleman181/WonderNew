@@ -7,6 +7,9 @@ import { DopamineClicker } from './pages/DopamineClicker';
 import { ElementFusion } from './pages/ElementFusion';
 import { WebMuseum } from './pages/WebMuseum';
 import { GenericProject } from './pages/GenericProject';
+import { AmbientChaos } from './pages/AmbientChaos';
+import { AsteroidLauncher } from './pages/AsteroidLauncher';
+import { AuctionGame } from './pages/AuctionGame';
 import './App.css';
 
 function App() {
@@ -20,6 +23,9 @@ function App() {
         <Route path="/dopamine-clicker" element={<DopamineClicker />} />
         <Route path="/element-fusion" element={<ElementFusion />} />
         <Route path="/web-museum" element={<WebMuseum />} />
+        <Route path="/ambient-chaos" element={<AmbientChaos />} />
+        <Route path="/asteroid-launcher" element={<AsteroidLauncher />} />
+        <Route path="/auction-game" element={<AuctionGame />} />
         {/* Dynamic project routes (fallback for image-backed projects) */}
         <Route path="/:projectId" element={<GenericProject />} />
       </Routes>
