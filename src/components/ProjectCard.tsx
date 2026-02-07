@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { Project } from '@/types';
 
 interface ProjectCardProps {
@@ -8,8 +8,21 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
+  const navigate = useNavigate();
+
+  // Vite provides the base URL via import.meta.env.BASE_URL
+  const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+  const path = project.url.replace(/^\//, '');
+  const href = `${base}/${path}`;
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Use SPA navigation when possible
+    navigate(project.url.replace(/^\//, '/') );
+  };
+
   return (
-    <Link to={project.url}>
+    <a href={href} onClick={handleClick} className="block">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -33,6 +46,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </h3>
         </div>
       </motion.div>
-    </Link>
+    </a>
   );
 }
