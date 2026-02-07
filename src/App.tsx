@@ -16,6 +16,10 @@ import { BidBattle } from './pages/BidBattle';
 import { BillionaireSim } from './pages/BillionaireSim';
 import { DarkPatterns } from './pages/DarkPatterns';
 import { DaysSinceIncident } from './pages/DaysSinceIncident';
+import { BirthMap } from './pages/BirthMap';
+import { DebateClub } from './pages/DebateClub';
+import { DeepSea } from './pages/DeepSea';
+import { DesignIphone } from './pages/DesignIphone';
 import './App.css';
 
 function App() {
@@ -38,6 +42,10 @@ function App() {
         <Route path="/billionaire-sim" element={<BillionaireSim />} />
         <Route path="/dark-patterns" element={<DarkPatterns />} />
         <Route path="/days-since-incident" element={<DaysSinceIncident />} />
+        <Route path="/birth-map" element={<BirthMap />} />
+        <Route path="/debate-club" element={<DebateClub />} />
+        <Route path="/deep-sea" element={<DeepSea />} />
+        <Route path="/design-iphone" element={<DesignIphone />} />
         {/* Dynamic project routes (fallback for image-backed projects) */}
         <Route path="/:projectId" element={<GenericProject />} />
       </Routes>
